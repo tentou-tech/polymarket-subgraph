@@ -1,6 +1,9 @@
-type ExampleEntity @entity(immutable: true) {
+type EventOnchain @entity(immutable: true) {
   id: Bytes!
-  count: BigInt!
-  receiver: Bytes! # address
-  tokenId: BigInt! # uint256
+  transactionHash: Bytes!
+  blockNumber: BigInt!
+  contractAddress: Bytes!
+  eventName: String!
+  args: String!
+  createdAt: BigInt!
 }
