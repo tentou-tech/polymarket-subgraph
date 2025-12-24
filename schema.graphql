@@ -7,3 +7,65 @@ type EventOnchain @entity(immutable: true) {
   args: String!
   createdAt: BigInt!
 }
+
+type TokenRegistered @entity(immutable: true) {
+  id: Bytes!
+  token0: BigInt!
+  token1: BigInt!
+  conditionId: Bytes!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OrderFilled @entity(immutable: true) {
+  id: Bytes!
+  orderHash: Bytes!
+  maker: Bytes!
+  taker: Bytes!
+  makerAssetId: BigInt!
+  takerAssetId: BigInt!
+  makerAmountFilled: BigInt!
+  takerAmountFilled: BigInt!
+  fee: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OrdersMatched @entity(immutable: true) {
+  id: Bytes!
+  takerOrderHash: Bytes!
+  takerOrderMaker: Bytes!
+  makerAssetId: BigInt!
+  takerAssetId: BigInt!
+  makerAmountFilled: BigInt!
+  takerAmountFilled: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type QuestionInitialized @entity(immutable: true) {
+  id: Bytes!
+  questionID: Bytes!
+  requestTimestamp: BigInt!
+  creator: Bytes!
+  ancillaryData: Bytes!
+  rewardToken: Bytes!
+  reward: BigInt!
+  proposalBond: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type QuestionResolved @entity(immutable: true) {
+  id: Bytes!
+  questionID: Bytes!
+  settledPrice: BigInt!
+  payouts: [BigInt!]!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

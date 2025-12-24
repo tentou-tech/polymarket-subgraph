@@ -8,11 +8,16 @@
     "create-local": "graph create --node http://localhost:8020/ polymarket",
     "remove-local": "graph remove --node http://localhost:8020/ polymarket",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 polymarket",
-    "test": "graph test"
+    "test": "graph test",
+    "create-prod": "graph create polymarket --node https://graph-node-polygon.tentou.tech/",
+    "deploy-prod": "graph deploy polymarket --ipfs http://ipfs.tentou.tech:5001 --node https://graph-node-polygon.tentou.tech/",
+    "remove-prod": "graph remove --node https://graph-node-polygon.tentou.tech/ polymarket"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.98.1",
     "@graphprotocol/graph-ts": "0.37.0"
   },
-  "devDependencies": { "matchstick-as": "0.6.0" }
+  "devDependencies": {
+    "matchstick-as": "0.6.0"
+  }
 }
