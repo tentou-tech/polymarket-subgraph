@@ -20,6 +20,8 @@ services:
       ipfs: "ipfs:5001"
       ethereum: "polygon:https://polygon.drpc.org"
       GRAPH_LOG: info
+      GRAPH_ALLOW_NON_DETERMINISTIC_IPFS: '1'
+      GRAPH_ETHEREUM_GENESIS_BLOCK_NUMBER: '77699999'
   ipfs:
     image: ipfs/kubo:v0.17.0
     ports:
