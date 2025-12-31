@@ -3,6 +3,7 @@
 import { Address, BigInt } from '@graphprotocol/graph-ts';
 
 import { loadOrCreateUserPosition } from './loadOrCreateUserPosition';
+import { updatePnlBuckets } from './updatePnlBuckets';
 
 import { COLLATERAL_SCALE } from '../../../common/constants';
 
@@ -11,6 +12,8 @@ const updateUserPositionWithSell = (
   positionId: BigInt,
   price: BigInt,
   amount: BigInt,
+  conditionId: string,
+  timestamp: BigInt,
 ): void => {
   const userPosition = loadOrCreateUserPosition(user, positionId);
 
@@ -33,6 +36,15 @@ const updateUserPositionWithSell = (
   // update amount
   userPosition.amount = userPosition.amount.minus(adjustedAmount);
   userPosition.save();
+
+  updatePnlBuckets(
+    user,
+    positionId,
+    conditionId,
+    deltaPnL,
+    userPosition.amount,
+    timestamp,
+  );
 };
 
 export { updateUserPositionWithSell };

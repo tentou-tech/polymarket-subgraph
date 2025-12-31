@@ -51,6 +51,8 @@ export function handlePositionSplit(event: PositionSplit): void {
       positionId,
       FIFTY_CENTS,
       event.params.amount,
+      conditionId.toHexString(),
+      event.block.timestamp,
     );
   }
 }
@@ -85,6 +87,8 @@ export function handlePositionsMerge(event: PositionsMerge): void {
       positionId,
       FIFTY_CENTS,
       event.params.amount,
+      conditionId.toHexString(),
+      event.block.timestamp,
     );
   }
 }
@@ -136,6 +140,8 @@ export function handlePayoutRedemption(event: PayoutRedemption): void {
       positionId,
       price,
       amount,
+      conditionId.toHexString(),
+      event.block.timestamp,
     );
   }
 }

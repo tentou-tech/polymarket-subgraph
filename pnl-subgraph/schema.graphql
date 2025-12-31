@@ -32,10 +32,38 @@ type Condition @entity {
   "payouts"
   payoutNumerators: [BigInt!]!
   payoutDenominator: BigInt!
+  "is this a neg risk condition?"
+  negRisk: Boolean!
 }
 
 type FPMM @entity {
   "FPMM address"
+  id: ID!
+  "conditionId"
+  conditionId: String!
+}
+
+type UserPositionPnlBucket @entity {
+  "ID = user_address + token_id + period + period_start_timestamp"
+  id: ID!
+  "User Address"
+  user: String!
+  "Token ID"
+  tokenId: BigInt!
+  "The Condition (Question) this token belongs to"
+  conditionId: String!
+  "Period type: day, week, month"
+  period: String!
+  "Cumulative realized PnL during this period"
+  pnl: BigInt!
+  "Latest amount held at the end of the last action in this period"
+  amount: BigInt!
+  "Start timestamp of the period"
+  timestamp: BigInt!
+}
+
+type Position @entity {
+  "tokenId"
   id: ID!
   "conditionId"
   conditionId: String!

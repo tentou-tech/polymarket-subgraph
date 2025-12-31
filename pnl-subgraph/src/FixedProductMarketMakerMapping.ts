@@ -49,6 +49,8 @@ export function handleBuy(event: FPMMBuy): void {
     positionId,
     price,
     event.params.outcomeTokensBought,
+    conditionId,
+    event.block.timestamp,
   );
 }
 
@@ -88,6 +90,8 @@ export function handleSell(event: FPMMSell): void {
     positionId,
     price,
     event.params.outcomeTokensSold,
+    conditionId,
+    event.block.timestamp,
   );
 }
 
@@ -133,6 +137,8 @@ export function handleFundingAdded(event: FPMMFundingAdded): void {
     positionId,
     sendbackDetails.price,
     sendbackDetails.amount,
+    conditionId,
+    event.block.timestamp,
   );
 
   if (event.params.sharesMinted.isZero()) {
@@ -160,6 +166,8 @@ export function handleFundingAdded(event: FPMMFundingAdded): void {
     BigInt.fromByteArray(event.address),
     LpSharePrice,
     event.params.sharesMinted,
+    event.address.toHexString(), // Use FPMM address as conditionId for LP tokens
+    event.block.timestamp,
   );
 }
 
@@ -211,6 +219,8 @@ export function handleFundingRemoved(event: FPMMFundingRemoved): void {
       positionId,
       tokenPrice,
       tokenAmount,
+      conditionId,
+      event.block.timestamp,
     );
   }
 
@@ -231,5 +241,7 @@ export function handleFundingRemoved(event: FPMMFundingRemoved): void {
     BigInt.fromByteArray(event.address),
     LpSalePrice,
     event.params.sharesBurnt,
+    event.address.toHexString(), // Use FPMM address as conditionId for LP tokens
+    event.block.timestamp,
   );
 }

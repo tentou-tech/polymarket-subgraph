@@ -5,6 +5,7 @@ import { updateUserPositionWithBuy } from './utils/updateUserPositionWithBuy';
 import { updateUserPositionWithSell } from './utils/updateUserPositionWithSell';
 
 import { COLLATERAL_SCALE, TradeType } from '../../common/constants';
+import { Position } from './types/schema';
 
 /**
  * Handles individual OrderFilled events
@@ -26,12 +27,17 @@ export function handleOrderFilled(event: OrderFilled): void {
   // dollars per share
   const price = order.quoteAmount.times(COLLATERAL_SCALE).div(order.baseAmount);
 
+  const position = Position.load(order.positionId.toString());
+  const conditionId = position ? position.conditionId : '';
+
   if (order.side == TradeType.BUY) {
     updateUserPositionWithBuy(
       order.account,
       order.positionId,
       price,
       order.baseAmount,
+      conditionId,
+      event.block.timestamp,
     );
   } else {
     updateUserPositionWithSell(
@@ -39,6 +45,8 @@ export function handleOrderFilled(event: OrderFilled): void {
       order.positionId,
       price,
       order.baseAmount,
+      conditionId,
+      event.block.timestamp,
     );
   }
 }

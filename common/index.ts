@@ -1,6 +1,7 @@
 import { computeCollectionId, computePositionId } from './utils/ctf-utils';
 import { getConditionId } from './utils/getConditionId';
 import { getEventKey } from './utils/getEventKey';
+import { getNegRiskConditionId } from './utils/getNegRiskConditionId';
 import { getNegRiskPositionId } from './utils/getNegRiskPositionId';
 import { getNegRiskQuestionId } from './utils/getNegRiskQuestionId';
 import { getPositionId } from './utils/getPositionId';
@@ -11,6 +12,7 @@ export {
   computePositionId,
   getConditionId,
   getEventKey,
+  getNegRiskConditionId,
   getNegRiskPositionId,
   getNegRiskQuestionId,
   getPositionId,

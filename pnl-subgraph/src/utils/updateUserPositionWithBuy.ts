@@ -3,12 +3,15 @@
 import { Address, BigInt } from '@graphprotocol/graph-ts';
 
 import { loadOrCreateUserPosition } from './loadOrCreateUserPosition';
+import { updatePnlBuckets } from './updatePnlBuckets';
 
 const updateUserPositionWithBuy = (
   user: Address,
   positionId: BigInt,
   price: BigInt,
   amount: BigInt,
+  conditionId: string,
+  timestamp: BigInt,
 ): void => {
   const userPosition = loadOrCreateUserPosition(user, positionId);
 
@@ -29,6 +32,15 @@ const updateUserPositionWithBuy = (
     userPosition.totalBought = userPosition.totalBought.plus(amount);
 
     userPosition.save();
+
+    updatePnlBuckets(
+      user,
+      positionId,
+      conditionId,
+      BigInt.zero(),
+      userPosition.amount,
+      timestamp,
+    );
   }
 };
 

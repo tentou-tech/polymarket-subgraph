@@ -13,7 +13,7 @@ import {
 import { NegRiskEvent } from './types/schema';
 import { loadCondition } from './utils/loadCondition';
 
-import { getNegRiskPositionId } from '../../common';
+import { getNegRiskConditionId, getNegRiskPositionId } from '../../common';
 import {
   COLLATERAL_SCALE,
   FIFTY_CENTS,
@@ -56,6 +56,8 @@ export function handlePositionSplit(event: PositionSplit): void {
       positionId,
       FIFTY_CENTS,
       event.params.amount,
+      conditionId.toHexString(),
+      event.block.timestamp,
     );
   }
 }
@@ -88,6 +90,8 @@ export function handlePositionsMerge(event: PositionsMerge): void {
       positionId,
       FIFTY_CENTS,
       event.params.amount,
+      conditionId.toHexString(),
+      event.block.timestamp,
     );
   }
 }
@@ -139,13 +143,19 @@ export function handlePositionsConverted(event: PositionsConverted): void {
         positionId,
         userPosition.avgPrice,
         event.params.amount,
+        getNegRiskConditionId(
+          event.params.marketId,
+          questionIndex,
+        ).toHexString(),
+        event.block.timestamp,
       );
 
       noPriceSum = noPriceSum.plus(userPosition.avgPrice);
     }
   }
 
-  const noPrice = noPriceSum.div(BigInt.fromI32(noCount));
+  const noPrice =
+    noCount > 0 ? noPriceSum.div(BigInt.fromI32(noCount)) : BigInt.zero();
 
   // questionCount could equal noCount,
   // in that case we didn't buy any YES tokens
@@ -165,12 +175,18 @@ export function handlePositionsConverted(event: PositionsConverted): void {
         questionIndex,
         YES_INDEX,
       );
+
       // buy the YES tokens with average YES price computed above
       updateUserPositionWithBuy(
         event.params.stakeholder,
         positionId,
         yesPrice,
         event.params.amount,
+        getNegRiskConditionId(
+          event.params.marketId,
+          questionIndex,
+        ).toHexString(),
+        event.block.timestamp,
       );
     }
   }
@@ -207,6 +223,8 @@ export function handlePayoutRedemption(event: PayoutRedemption): void {
       positionId,
       price,
       amount,
+      conditionId.toHexString(),
+      event.block.timestamp,
     );
   }
 }
