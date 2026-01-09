@@ -7,6 +7,7 @@ const config = {
   templatedFiles: [
     'activity-subgraph/subgraph.yaml',
     'pnl-subgraph/subgraph.yaml',
+    'pnl-actions-subgraph/subgraph.yaml',
     'oi-subgraph/subgraph.yaml',
     'fpmm-subgraph/subgraph.yaml',
     'orderbook-subgraph/subgraph.yaml',

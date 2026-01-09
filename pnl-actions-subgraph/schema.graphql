@@ -1,0 +1,72 @@
+# User Token Position
+type UserPosition @entity {
+  "User Address + Token ID"
+  id: ID!
+  "User Address"
+  user: String!
+  "Token ID"
+  tokenId: BigInt!
+  "amount of token the user holds"
+  amount: BigInt!
+  "the avg price the user bought the token"
+  avgPrice: BigInt!
+  "realized profits - losses"
+  realizedPnl: BigInt!
+  "total amount of token bought"
+  totalBought: BigInt!
+}
+
+# Neg Risk Events/Markets
+type NegRiskEvent @entity {
+  "negRiskMarketId"
+  id: ID!
+  "Question Count"
+  questionCount: Int!
+}
+
+type Condition @entity {
+  "conditionId"
+  id: ID!
+  "tokenIds"
+  positionIds: [BigInt!]!
+  "payouts"
+  payoutNumerators: [BigInt!]!
+  payoutDenominator: BigInt!
+  "is this a neg risk condition?"
+  negRisk: Boolean!
+}
+
+type FPMM @entity {
+  "FPMM address"
+  id: ID!
+  "conditionId"
+  conditionId: String!
+}
+
+type Position @entity {
+  "tokenId"
+  id: ID!
+  "conditionId"
+  conditionId: String!
+}
+
+type PositionAction @entity {
+  "ID = txHash + logIndex"
+  id: ID!
+  "User Address"
+  user: String!
+  "Token ID"
+  tokenId: BigInt!
+  "Type: Buy, Sell, Split, Merge, Redeem, Convert"
+  type: String!
+  "Amount of tokens"
+  amount: BigInt!
+  "Price at which the action occurred"
+  price: BigInt!
+  "Timestamp of the action"
+  timestamp: BigInt!
+  "Block number of the action"
+  block: BigInt!
+  "Transaction Hash"
+  transactionHash: String!
+}
