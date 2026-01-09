@@ -62,6 +62,7 @@ export function handlePositionSplit(event: PositionSplit): void {
       event.logIndex,
       'Split',
       'handlePositionSplit-Buy',
+      BigInt.fromI32(outcomeIndex),
     );
   }
 }
@@ -101,6 +102,7 @@ export function handlePositionsMerge(event: PositionsMerge): void {
       event.logIndex,
       'Merge',
       'handlePositionsMerge-Sell',
+      BigInt.fromI32(outcomeIndex),
     );
   }
 }
@@ -116,6 +118,8 @@ export function handlePositionsConverted(event: PositionsConverted): void {
   // @ts-expect-error Cannot find name 'u32'.
   const questionCount = <u32>negRiskEvent.questionCount;
   const indexSet = event.params.indexSet;
+
+  let actionIndex = 0;
 
   // 1. NO_PRICE is obtained as the average of the NO token average prices
   // @ts-expect-error Cannot find name 'u8'.
@@ -157,6 +161,7 @@ export function handlePositionsConverted(event: PositionsConverted): void {
         event.logIndex,
         'Convert',
         'handlePositionsConverted-Sell',
+        BigInt.fromI32(actionIndex++),
       );
 
       noPriceSum = noPriceSum.plus(BigInt.zero());
@@ -201,6 +206,7 @@ export function handlePositionsConverted(event: PositionsConverted): void {
         event.logIndex,
         'Convert',
         'handlePositionsConverted-Buy',
+        BigInt.fromI32(actionIndex++),
       );
     }
   }
@@ -244,6 +250,7 @@ export function handlePayoutRedemption(event: PayoutRedemption): void {
       event.logIndex,
       'Redeem',
       'handlePayoutRedemption-Sell',
+      BigInt.fromI32(outcomeIndex),
     );
   }
 }

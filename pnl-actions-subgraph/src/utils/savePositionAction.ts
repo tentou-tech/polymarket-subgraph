@@ -13,6 +13,7 @@ export function savePositionAction(
   logIndex: BigInt,
   actionType: string,
   source: string,
+  index: BigInt,
 ): void {
   const actionId =
     transactionHash + '-' + logIndex.toString() + '-' + positionId.toString();
@@ -27,5 +28,6 @@ export function savePositionAction(
   action.transactionHash = transactionHash;
   action.logIndex = logIndex;
   action.source = source;
+  action.index = index;
   action.save();
 }

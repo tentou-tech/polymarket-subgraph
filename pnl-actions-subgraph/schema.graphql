@@ -51,8 +51,10 @@ type PositionAction @entity {
   block: BigInt!
   "Transaction Hash"
   transactionHash: String!
-  "Log Index"
+  "Log Index inside the block"
   logIndex: BigInt!
   "Source of the action"
   source: String
+  "Index if multiple actions in the same log index"
+  index: BigInt!
 }

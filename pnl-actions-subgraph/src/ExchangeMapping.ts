@@ -1,3 +1,4 @@
+import { BigInt } from '@graphprotocol/graph-ts';
 import { OrderFilled } from './types/Exchange/Exchange';
 
 import { parseOrderFilled } from './utils/parseOrderFilled';
@@ -43,6 +44,7 @@ export function handleOrderFilled(event: OrderFilled): void {
       event.logIndex,
       'Buy',
       'handleOrderFilled-Buy',
+      BigInt.fromI32(0),
     );
   } else {
     updateUserPositionWithSell(
@@ -57,6 +59,7 @@ export function handleOrderFilled(event: OrderFilled): void {
       event.logIndex,
       'Sell',
       'handleOrderFilled-Sell',
+      BigInt.fromI32(0),
     );
   }
 }

@@ -57,6 +57,7 @@ export function handlePositionSplit(event: PositionSplit): void {
       event.logIndex,
       'Split',
       'handlePositionSplit-Buy',
+      BigInt.fromI32(outcomeIndex),
     );
   }
 }
@@ -98,6 +99,7 @@ export function handlePositionsMerge(event: PositionsMerge): void {
       event.logIndex,
       'Merge',
       'handlePositionsMerge-Sell',
+      BigInt.fromI32(outcomeIndex),
     );
   }
 }
@@ -151,6 +153,7 @@ export function handlePayoutRedemption(event: PayoutRedemption): void {
       event.logIndex,
       'Redeem',
       'handlePayoutRedemption-Sell',
+      BigInt.fromI32(outcomeIndex),
     );
   }
 }

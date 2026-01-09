@@ -56,6 +56,7 @@ export function handleBuy(event: FPMMBuy): void {
     event.logIndex,
     'Buy',
     'handleBuy-Buy',
+    BigInt.fromI32(0),
   );
 }
 
@@ -102,6 +103,7 @@ export function handleSell(event: FPMMSell): void {
     event.logIndex,
     'Sell',
     'handleSell-Sell',
+    BigInt.fromI32(0),
   );
 }
 
@@ -154,6 +156,7 @@ export function handleFundingAdded(event: FPMMFundingAdded): void {
     event.logIndex,
     'Buy',
     'handleFundingAdded-Buy',
+    BigInt.fromI32(0),
   );
 
   if (event.params.sharesMinted.isZero()) {
@@ -188,6 +191,7 @@ export function handleFundingAdded(event: FPMMFundingAdded): void {
     event.logIndex,
     'Buy',
     'handleFundingAdded-Buy',
+    BigInt.fromI32(1),
   );
 }
 
@@ -246,6 +250,7 @@ export function handleFundingRemoved(event: FPMMFundingRemoved): void {
       event.logIndex,
       'Buy',
       'handleFundingRemoved-Buy',
+      BigInt.fromI32(i),
     );
   }
 
@@ -273,5 +278,6 @@ export function handleFundingRemoved(event: FPMMFundingRemoved): void {
     event.logIndex,
     'Sell',
     'handleFundingRemoved-Sell',
+    BigInt.fromI32(2),
   );
 }
