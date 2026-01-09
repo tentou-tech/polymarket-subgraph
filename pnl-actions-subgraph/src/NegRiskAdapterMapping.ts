@@ -19,7 +19,6 @@ import {
   FIFTY_CENTS,
   NEG_RISK_EXCHANGE,
 } from '../../common/constants';
-import { loadOrCreateUserPosition } from './utils/loadOrCreateUserPosition';
 import { indexSetContains } from '../../common/utils/indexSetContains';
 import { computeNegRiskYesPrice } from './utils/computeNegRiskYesPrice';
 
@@ -140,16 +139,11 @@ export function handlePositionsConverted(event: PositionsConverted): void {
         NO_INDEX,
       );
 
-      const userPosition = loadOrCreateUserPosition(
-        event.params.stakeholder,
-        positionId,
-      );
-
-      // sell the NO token for the average price it was obtained for
+      // sell the NO token for zero price as we don't track avgPrice anymore
       updateUserPositionWithSell(
         event.params.stakeholder,
         positionId,
-        userPosition.avgPrice,
+        BigInt.zero(),
         event.params.amount,
         getNegRiskConditionId(
           event.params.marketId,
@@ -162,7 +156,7 @@ export function handlePositionsConverted(event: PositionsConverted): void {
         'Convert',
       );
 
-      noPriceSum = noPriceSum.plus(userPosition.avgPrice);
+      noPriceSum = noPriceSum.plus(BigInt.zero());
     }
   }
 

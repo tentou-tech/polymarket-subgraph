@@ -10,7 +10,6 @@ import {
 
 import { updateUserPositionWithSell } from './utils/updateUserPositionWithSell';
 import { updateUserPositionWithBuy } from './utils/updateUserPositionWithBuy';
-import { loadOrCreateUserPosition } from './utils/loadOrCreateUserPosition';
 
 import {
   COLLATERAL_SCALE,
@@ -133,13 +132,8 @@ export function handlePayoutRedemption(event: PayoutRedemption): void {
   for (; outcomeIndex < 2; outcomeIndex++) {
     const positionId = condition.positionIds[outcomeIndex];
 
-    const userPosition = loadOrCreateUserPosition(
-      event.params.redeemer,
-      positionId,
-    );
-
-    // the user redeems their entire amount
-    const amount = userPosition.amount;
+    // the user redeems their entire amount, but we don't track it anymore
+    const amount = BigInt.zero();
     const price = payoutNumerators[outcomeIndex]
       .times(COLLATERAL_SCALE)
       .div(payoutDenominator);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { Address, BigInt } from '@graphprotocol/graph-ts';
 import { PositionAction } from '../types/schema';
 
