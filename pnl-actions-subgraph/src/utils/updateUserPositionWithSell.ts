@@ -15,6 +15,7 @@ const updateUserPositionWithSell = (
   blockNumber: BigInt,
   logIndex: BigInt,
   actionType: string,
+  source: string,
 ): void => {
   savePositionAction(
     user,
@@ -26,6 +27,7 @@ const updateUserPositionWithSell = (
     blockNumber,
     logIndex,
     actionType,
+    source,
   );
 };
 

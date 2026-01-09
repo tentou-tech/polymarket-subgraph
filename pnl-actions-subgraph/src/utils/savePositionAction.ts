@@ -12,8 +12,10 @@ export function savePositionAction(
   blockNumber: BigInt,
   logIndex: BigInt,
   actionType: string,
+  source: string,
 ): void {
-  const actionId = transactionHash + '-' + logIndex.toString();
+  const actionId =
+    transactionHash + '-' + logIndex.toString() + '-' + positionId.toString();
   const action = new PositionAction(actionId);
   action.user = user.toHexString();
   action.tokenId = positionId;
@@ -23,5 +25,7 @@ export function savePositionAction(
   action.timestamp = timestamp;
   action.block = blockNumber;
   action.transactionHash = transactionHash;
+  action.logIndex = logIndex;
+  action.source = source;
   action.save();
 }

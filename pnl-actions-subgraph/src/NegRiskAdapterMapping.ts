@@ -61,6 +61,7 @@ export function handlePositionSplit(event: PositionSplit): void {
       event.block.number,
       event.logIndex,
       'Split',
+      'handlePositionSplit-Buy',
     );
   }
 }
@@ -99,6 +100,7 @@ export function handlePositionsMerge(event: PositionsMerge): void {
       event.block.number,
       event.logIndex,
       'Merge',
+      'handlePositionsMerge-Sell',
     );
   }
 }
@@ -154,6 +156,7 @@ export function handlePositionsConverted(event: PositionsConverted): void {
         event.block.number,
         event.logIndex,
         'Convert',
+        'handlePositionsConverted-Sell',
       );
 
       noPriceSum = noPriceSum.plus(BigInt.zero());
@@ -197,6 +200,7 @@ export function handlePositionsConverted(event: PositionsConverted): void {
         event.block.number,
         event.logIndex,
         'Convert',
+        'handlePositionsConverted-Buy',
       );
     }
   }
@@ -239,6 +243,7 @@ export function handlePayoutRedemption(event: PayoutRedemption): void {
       event.block.number,
       event.logIndex,
       'Redeem',
+      'handlePayoutRedemption-Sell',
     );
   }
 }

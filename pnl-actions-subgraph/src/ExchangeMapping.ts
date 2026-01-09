@@ -42,6 +42,7 @@ export function handleOrderFilled(event: OrderFilled): void {
       event.block.number,
       event.logIndex,
       'Buy',
+      'handleOrderFilled-Buy',
     );
   } else {
     updateUserPositionWithSell(
@@ -55,6 +56,7 @@ export function handleOrderFilled(event: OrderFilled): void {
       event.block.number,
       event.logIndex,
       'Sell',
+      'handleOrderFilled-Sell',
     );
   }
 }
